@@ -1,9 +1,9 @@
-# NativeBase TypeScript Expo Template
+# Native Base + Redux + Async Storage
 
-The official NativeBase TypeScript template for [Expo](https://docs.expo.io/)
-
-## Usage
+## Uso
 
 ```sh
-expo init my-app --template @native-base/expo-template-typescript
+yarn ou npm install
+
+Utilizado para estudo de redux com async storage, criando uma ToDo List 
 ```

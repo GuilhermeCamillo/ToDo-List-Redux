@@ -1,16 +1,12 @@
 import {
-  createAsyncThunk,
   createReducer,
   createAction,
 } from "@reduxjs/toolkit";
-import { handleApiError } from "../../utils/error";
-import { ApiError, DefaultState } from "../../types/store";
-import { AxiosResponse } from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {  DefaultState } from "../../types/store";
 
 // INITIAL STATE
 type InitialState = DefaultState & {
-  todoList?: string[];
+  todoList: string[];
 };
 
 export const INITIAL_STATE: InitialState = {

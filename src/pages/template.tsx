@@ -15,7 +15,7 @@ const TodoListTemplate: React.FC<{
         <Input
           flex={1}
           value={aFazer}
-          placeholder="A fazer"
+          placeholder="A FAZER"
           onChangeText={(text) => setAFazer(text)}
         />
         <TouchableOpacity
@@ -41,7 +41,7 @@ const TodoListTemplate: React.FC<{
             borderWidth="1px"
           >
             <HStack justifyContent="space-between" alignItems="center">
-              <Text>{item}</Text>
+              <Text flex={1}>{item}</Text>
               <TouchableOpacity
                 onPress={() => {
                   alterarLista(data.filter((filtro) => filtro !== item));
