@@ -28,6 +28,7 @@ const TodoListTemplate: React.FC<{
         </TouchableOpacity>
       </HStack>
       <FlatList
+        showsVerticalScrollIndicator={false}
         style={styles.lista}
         data={data}
         renderItem={({ item, index }) => (
