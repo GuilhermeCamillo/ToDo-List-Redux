@@ -10,9 +10,10 @@ const TodoListTemplate: React.FC<{
   const [aFazer, setAFazer] = useState<string>("");
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} bg="muted.900">
       <HStack alignItems="center" mb="16px" space="4px">
         <Input
+          borderColor="primary.700"
           flex={1}
           value={aFazer}
           placeholder="A FAZER"
@@ -24,7 +25,7 @@ const TodoListTemplate: React.FC<{
             setAFazer("");
           }}
         >
-          <PlusCircle size="46px" color="#000" />
+          <PlusCircle size="46px" color="#0F30A8" />
         </TouchableOpacity>
       </HStack>
       <FlatList

@@ -1,6 +1,6 @@
 import React from "react";
 import TodoListTemplate from "./template";
-import { Box } from "native-base";
+import { Box, StatusBar } from "native-base";
 import { RootState, useAppDispatch, useAppSelector } from "../store";
 import { setTodoList } from "../store/ducks/todoList";
 
@@ -15,7 +15,8 @@ const TodoList = () => {
 
   return (
     <>
-      <Box safeAreaTop />
+      <StatusBar barStyle="light-content" backgroundColor="muted.900" />
+      <Box safeAreaTop bg="muted.900" />
       <TodoListTemplate data={todoList} alterarLista={alterarLista} />
     </>
   );
