@@ -15,8 +15,6 @@ export const INITIAL_STATE: InitialState = {
   error: null,
 };
 
-// REQUESTS
-
 export const setTodoList = createAction<InitialState["todoList"]>(
   "todoList/setTodoList"
 );

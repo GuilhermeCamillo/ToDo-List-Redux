@@ -15,8 +15,8 @@ const TodoList = () => {
 
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="muted.900" />
-      <Box safeAreaTop bg="muted.900" />
+      <StatusBar barStyle="light-content" backgroundColor="#404040" />
+      <Box safeAreaTop bg="muted.700" />
       <TodoListTemplate data={todoList} alterarLista={alterarLista} />
     </>
   );

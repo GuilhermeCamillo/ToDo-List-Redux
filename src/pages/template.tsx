@@ -1,33 +1,66 @@
 import React, { useEffect, useState } from "react";
-import { PlusCircle, Trash } from "phosphor-react-native";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { Box, FlatList, HStack, Input, Text, View } from "native-base";
+import { Plus, Trash } from "phosphor-react-native";
+import { Keyboard, StyleSheet } from "react-native";
+import {
+  Box,
+  FlatList,
+  HStack,
+  IconButton,
+  Input,
+  Text,
+  View,
+} from "native-base";
 
 const TodoListTemplate: React.FC<{
   data: string[];
   alterarLista: (lista: string[]) => void;
 }> = ({ data, alterarLista }) => {
   const [aFazer, setAFazer] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidHide", () => setError(false));
+  }, [Keyboard]);
+
+  const handleCreateTodo = () => {
+    if (aFazer !== "" && !data.includes(aFazer)) {
+      alterarLista([aFazer, ...data]);
+      setAFazer("");
+      Keyboard.dismiss();
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
 
   return (
-    <View style={styles.container} bg="muted.900">
+    <View style={styles.container} bg="muted.700">
       <HStack alignItems="center" mb="16px" space="4px">
         <Input
-          borderColor="primary.700"
+          isInvalid={error}
+          variant="filled"
+          bg="muted.400"
+          borderColor="info.700"
+          placeholderTextColor="#5c5757"
+          color="white"
           flex={1}
           value={aFazer}
-          placeholder="A FAZER"
+          placeholder="Digite os afazeres"
           onChangeText={(text) => setAFazer(text)}
         />
-        <TouchableOpacity
-          onPress={() => {
-            alterarLista([aFazer, ...data]);
-            setAFazer("");
-          }}
-        >
-          <PlusCircle size="46px" color="#0F30A8" />
-        </TouchableOpacity>
+        <IconButton
+          borderWidth="1px"
+          borderColor="info.700"
+          onPress={handleCreateTodo}
+          icon={<Plus size="24px" color="#0369A1" />}
+          variant="solid"
+        />
       </HStack>
+      {error && (
+        <Text bold color="error.500">
+          Erro! Afazer nulo ou já existente.
+        </Text>
+      )}
       <FlatList
         showsVerticalScrollIndicator={false}
         style={styles.lista}
@@ -37,20 +70,19 @@ const TodoListTemplate: React.FC<{
             key={index}
             bg="info.200"
             mb="10px"
-            borderRadius="8px"
-            p="16px"
+            borderRadius="4px"
+            p="8px"
             borderColor="primary.500"
             borderWidth="1px"
           >
             <HStack justifyContent="space-between" alignItems="center">
               <Text flex={1}>{item}</Text>
-              <TouchableOpacity
+              <IconButton
                 onPress={() => {
                   alterarLista(data.filter((filtro) => filtro !== item));
                 }}
-              >
-                <Trash size="24px" color="#000" />
-              </TouchableOpacity>
+                icon={<Trash size="16px" color="#000" />}
+              />
             </HStack>
           </Box>
         )}
